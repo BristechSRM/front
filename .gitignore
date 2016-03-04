@@ -1,0 +1,5 @@
+build/
+node_modules/
+
+# Ubuntu trash folder on external dirs (i.e /workspace)
+.Trash-*
