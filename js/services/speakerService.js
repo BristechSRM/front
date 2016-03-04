@@ -6,7 +6,7 @@ require('../config/backend.js');
         var service = {
             getSpeakers : getSpeakers
         };
-        var apiBaseUrl = backend.url + ':' + backend.port;  + '/api';
+        var apiBaseUrl = backend.url + ':' + backend.port;
         var speakersUrl = apiBaseUrl + '/speakers';
         var speakers = [];
 
