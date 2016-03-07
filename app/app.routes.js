@@ -1,5 +1,3 @@
-require("../controllers/DashboardController.js");
-
 (function (){
     angular.module("BristechSRM").config(["$routeProvider", router]);
     function router($routeProvider) {
