@@ -11,7 +11,7 @@ describe('BristechSRM', function() {
 
     beforeEach(function() {
         angular.mock.module('BristechSRM', function($provide){
-        $provide.constant('backend', backend);
+          $provide.constant('BACKEND', backend);
         });
     });
 

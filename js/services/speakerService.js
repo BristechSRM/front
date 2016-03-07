@@ -1,12 +1,10 @@
-require('../config/backend.js');
-
 (function() {
     angular.module("BristechSRM").factory("speakerService", speakerService);
-    function speakerService($http, $q, backend) {
+    function speakerService($http, BACKEND) {
         var service = {
             getSpeakers : getSpeakers
         };
-        var apiBaseUrl = backend.url + ':' + backend.port;
+        var apiBaseUrl = BACKEND.url + ':' + BACKEND.port;
         var speakersUrl = apiBaseUrl + '/speakers';
         var speakers = [];
 
