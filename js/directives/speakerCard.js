@@ -8,7 +8,14 @@ require('../filters/filters.js');
 			scope : {
 				speaker: "="
 			},
-			templateUrl: "speakerCard.html"
+			templateUrl: "speakerCard.html",
+            link: function(scope, elem, attrs) {
+                var statusClasses = ["unassigned", "assigned", "in-progress", "deferred", "topic-approved", "date-assigned"];
+                scope.statusToCssClass = function(status) {
+                    var statusClass = statusClasses[status];
+                    return statusClass || statusClasses[0];
+                };
+            }
 		};
 		return directive;
 	}
