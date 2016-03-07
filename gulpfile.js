@@ -9,7 +9,7 @@ var plugins = require('gulp-load-plugins')({pattern: ['*']});
 var paths = {
   style: {sass:'style/sass/**/*.scss', css: 'style/css/**/.*css'},
   scripts: 'app/**/*.js',
-  views: 'views/**/*.html',
+  views: 'app/**/*.html',
   output: 'build'
 };
 

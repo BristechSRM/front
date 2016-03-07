@@ -6,7 +6,7 @@
 			scope : {
 				speaker: "="
 			},
-			templateUrl: "speakerCard.html"
+			templateUrl: "dashboard/speakerCard/speakerCard.html"
 		};
 		return directive;
 	}

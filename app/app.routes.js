@@ -6,7 +6,7 @@
                 redirectTo: "/dashboard"
             })
             .when("/dashboard", {
-                templateUrl: "dashboard.html",
+                templateUrl: "dashboard/dashboard.html",
                 controller: "DashboardController",
                 controllerAs: "vm"
             });
