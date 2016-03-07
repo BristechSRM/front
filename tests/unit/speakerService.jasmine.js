@@ -29,8 +29,11 @@ describe('BristechSRM', function() {
 
     describe('getSpeakers returns speakers', function() {
         it('should return the speakers returned from the http request', function() {
-            $httpBackend.expectGET(backend.url + ":" + backend.port + "/speakers").respond(speakers);
-            service.getSpeakers();
+            $httpBackend.whenGET(backend.url + ":" + backend.port + "/speakers").respond(speakers);
+            service.getSpeakers().then(function(result) {
+                expect(result).toEqual(speakers);
+            });
+
             $httpBackend.flush();
         });
     });
