@@ -8,7 +8,7 @@ var plugins = require('gulp-load-plugins')({pattern: ['*']});
 
 var paths = {
   style: {sass:'style/sass/**/*.scss', css: 'style/css/**/.*css'},
-  scripts: 'js/**/*.js',
+  scripts: 'app/**/*.js',
   views: 'views/**/*.html',
   output: 'build'
 };
@@ -24,7 +24,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('webpack', function() {
-    return gulp.src('/js/app.js')
+    return gulp.src('/app/app.module.js')
         .pipe(plugins.webpackStream( require('./webpack.config.js') ))
         .pipe(gulp.dest(paths.output));
 });
