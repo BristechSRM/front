@@ -1,5 +1,3 @@
-require('../filters/filters.js');
-
 (function () {
   angular.module("BristechSRM").directive("speakerCard", speakerCard);
 

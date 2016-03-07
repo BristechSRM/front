@@ -1,6 +1,3 @@
-require("../services/speakerService.js");
-require("../directives/speakerCard.js");
-
 (function () {
     angular.module("BristechSRM").controller("DashboardController",["speakerService", DashboardController]);
 
