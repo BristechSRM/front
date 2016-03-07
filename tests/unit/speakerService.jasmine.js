@@ -2,6 +2,7 @@ describe('BristechSRM', function() {
     var service, $httpBackend;
 
     var backend = {url : 'http://localhost', port: 9000};
+    var backendFullUrl = backend.url + ":" + backend.port + "/speakers";
     var speakers = [
         {Name: "Joe Bloggs"}
     ];
@@ -21,7 +22,7 @@ describe('BristechSRM', function() {
 
     describe('getSpeakers makes get request', function(){
         it('should perform http GET on the given url', function(){
-            $httpBackend.expectGET(backend.url + ":" + backend.port + "/speakers").respond(speakers);
+            $httpBackend.expectGET(backendFullUrl).respond(speakers);
             service.getSpeakers();
             $httpBackend.flush();
         });
@@ -29,7 +30,7 @@ describe('BristechSRM', function() {
 
     describe('getSpeakers returns speakers', function() {
         it('should return the speakers returned from the http request', function() {
-            $httpBackend.whenGET(backend.url + ":" + backend.port + "/speakers").respond(speakers);
+            $httpBackend.whenGET(backendFullUrl).respond(speakers);
             service.getSpeakers().then(function(result) {
                 expect(result).toEqual(speakers);
             });
