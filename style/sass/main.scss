@@ -9,6 +9,20 @@ body {
     background-color: #EDEDED;
 }
 
+#dashboard {
+    display:flex;
+
+    .speaker-cards {
+        flex-grow: 1;
+    }
+
+    .sidebar {
+        width: 185px;
+        margin-left:20px;
+        margin-right:20px;
+    }
+}
+
 .speaker-cards {
     display: flex;
     flex-direction: row;
@@ -121,4 +135,60 @@ body {
 
 .speaker-card-footer.date-assigned {
     background-color: $date-assigned-color;
+}
+
+.sidebar {
+    h1 {
+        color: #202020;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+
+    .square {
+        width: 15px;
+        margin-right: 10px;
+
+        svg, svg > rect {
+            width: 15px;
+            height:15px;
+        }
+
+        rect {
+            fill: $unassigned-color;
+        }
+
+        rect.assigned {
+            fill: $assigned-color;
+        }
+
+        rect.in-progress {
+            fill: $in-progress-color;
+        }
+
+        rect.deferred {
+            fill: $deferred-color;
+        }
+
+        rect.topic-approved {
+            fill: $topic-approved-color;
+        }
+
+        rect.date-assigned {
+            fill: $date-assigned-color;
+        }
+    }
+
+    .label {
+        flex-grow: 1;
+    }
 }
