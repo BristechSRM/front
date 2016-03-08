@@ -5,8 +5,22 @@ $deferred-color: #7F1438;
 $topic-approved-color: #257979;
 $date-assigned-color: #86AB35;
 
+$states: unassigned assigned in-progress deferred topic-approved date-assigned;
+$state-colors: $unassigned-color $assigned-color $in-progress-color $deferred-color $topic-approved-color $date-assigned-color;
+
+
 body {
     background-color: #EDEDED;
+}
+
+
+@mixin assign-state-colors($selector, $property) {
+    @each $state in $states {
+        $i: index($states, $state);
+        #{$selector}.#{$state} {
+            #{$property}: nth($state-colors, $i);
+        }
+    }
 }
 
 #dashboard {
@@ -113,29 +127,7 @@ body {
     }
 }
 
-.speaker-card-footer.unassigned {
-    background-color: $unassigned-color;
-}
-
-.speaker-card-footer.assigned {
-    background-color: $assigned-color;
-}
-
-.speaker-card-footer.in-progress {
-    background-color: $in-progress-color;
-}
-
-.speaker-card-footer.deferred {
-    background-color: $deferred-color;
-}
-
-.speaker-card-footer.topic-approved {
-    background-color: $topic-approved-color;
-}
-
-.speaker-card-footer.date-assigned {
-    background-color: $date-assigned-color;
-}
+@include assign-state-colors(".speaker-card-footer", "background-color");
 
 .sidebar {
     h1 {
@@ -167,25 +159,7 @@ body {
             fill: $unassigned-color;
         }
 
-        rect.assigned {
-            fill: $assigned-color;
-        }
-
-        rect.in-progress {
-            fill: $in-progress-color;
-        }
-
-        rect.deferred {
-            fill: $deferred-color;
-        }
-
-        rect.topic-approved {
-            fill: $topic-approved-color;
-        }
-
-        rect.date-assigned {
-            fill: $date-assigned-color;
-        }
+        @include assign-state-colors("rect", "fill");
     }
 
     .label {
