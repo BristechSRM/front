@@ -54,9 +54,11 @@ gulp.task('test:karma', function() {
     }).start();
 });
 
-gulp.task('test', ['test:karma'])
+gulp.task('test', ['test:karma']);
 
-gulp.task('build', ['clean', 'lint', 'webpack', 'test', 'copy:views', 'style']);
+gulp.task('build', function(callback) {
+    plugins.runSequence("clean", ["lint", "test"], "webpack", ["copy:views", "style"], callback);
+});
 
 
 gulp.task('watch', ['webpack:devServer'], function() {
