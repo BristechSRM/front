@@ -20,12 +20,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         './app/app.module.js',
-      'tests/unit/**/*.js'
-    ],
-
-
-    // list of files to exclude
-    exclude: [
+        './node_modules/angular-mocks/angular-mocks.js',
+        './tests/unit/**/*.js'
     ],
 
     webpack: webpackConfig,
