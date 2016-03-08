@@ -1,5 +1,7 @@
 module.exports = function (module) {
-    module.config(["$routeProvider", router]);
+    module.config(router);
+
+    router.$inject = ["$routeProvider"];
     function router($routeProvider) {
         $routeProvider
             .when("/", {
