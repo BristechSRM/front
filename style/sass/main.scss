@@ -5,8 +5,36 @@ $deferred-color: #7F1438;
 $topic-approved-color: #257979;
 $date-assigned-color: #86AB35;
 
+$states: unassigned assigned in-progress deferred topic-approved date-assigned;
+$state-colors: $unassigned-color $assigned-color $in-progress-color $deferred-color $topic-approved-color $date-assigned-color;
+
+
 body {
     background-color: #EDEDED;
+}
+
+
+@mixin assign-state-colors($selector, $property) {
+    @each $state in $states {
+        $i: index($states, $state);
+        #{$selector}.#{$state} {
+            #{$property}: nth($state-colors, $i);
+        }
+    }
+}
+
+#dashboard {
+    display:flex;
+
+    .speaker-cards {
+        flex-grow: 1;
+    }
+
+    .sidebar {
+        width: 185px;
+        margin-left:20px;
+        margin-right:20px;
+    }
 }
 
 .speaker-cards {
@@ -99,26 +127,42 @@ body {
     }
 }
 
-.speaker-card-footer.unassigned {
-    background-color: $unassigned-color;
+@include assign-state-colors(".speaker-card-footer", "background-color");
+
+.sidebar {
+    h1 {
+        color: #202020;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
 }
 
-.speaker-card-footer.assigned {
-    background-color: $assigned-color;
-}
+.filter-option {
+    display: flex;
+    align-items: center;
 
-.speaker-card-footer.in-progress {
-    background-color: $in-progress-color;
-}
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
 
-.speaker-card-footer.deferred {
-    background-color: $deferred-color;
-}
+    .square {
+        width: 15px;
+        margin-right: 10px;
 
-.speaker-card-footer.topic-approved {
-    background-color: $topic-approved-color;
-}
+        svg, svg > rect {
+            width: 15px;
+            height:15px;
+        }
 
-.speaker-card-footer.date-assigned {
-    background-color: $date-assigned-color;
+        rect {
+            fill: $unassigned-color;
+        }
+
+        @include assign-state-colors("rect", "fill");
+    }
+
+    .label {
+        flex-grow: 1;
+    }
 }
