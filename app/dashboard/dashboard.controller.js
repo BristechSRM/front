@@ -13,7 +13,7 @@ module.exports = function (module) {
         };
 
         function stateFilter(speaker){
-            return excludedStates.every(function(state){
+            return vm.excludedStates.every(function(state){
                 return speaker.speakerStatus !== state;
             });
         }
