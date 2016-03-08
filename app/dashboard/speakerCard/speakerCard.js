@@ -1,5 +1,5 @@
-(function () {
-  angular.module("BristechSRM").directive("speakerCard", speakerCard);
+module.exports = function (module) {
+  module.directive("speakerCard", speakerCard);
 
 	function speakerCard() {
 		var directive = {
@@ -10,4 +10,4 @@
 		};
 		return directive;
 	}
-})();
+};

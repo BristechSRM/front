@@ -1,5 +1,5 @@
-(function () {
-  angular.module("BristechSRM").filter("stars", function(){
+module.exports = function (module) {
+  module.filter("stars", function() {
       return function (input) {
           var out = "";
           for (var i = 0;i < input;i++) {
@@ -9,5 +9,4 @@
           return out;
       };
   });
-
-})();
+};
