@@ -1,16 +1,16 @@
-require("../controllers/DashboardController.js");
+module.exports = function (module) {
+    module.config(router);
 
-(function (){
-    angular.module("BristechSRM").config(["$routeProvider", router]);
+    router.$inject = ["$routeProvider"];
     function router($routeProvider) {
         $routeProvider
             .when("/", {
                 redirectTo: "/dashboard"
             })
             .when("/dashboard", {
-                templateUrl: "dashboard.html",
+                templateUrl: "dashboard/dashboard.html",
                 controller: "DashboardController",
                 controllerAs: "vm"
             });
     }
-})();
+};
