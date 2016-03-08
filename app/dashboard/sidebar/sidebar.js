@@ -3,7 +3,17 @@ module.exports = function (module) {
 
     function sidebar() {
         var directive = {
-            templateUrl: "dashboard/sidebar/sidebar.html"
+            scope: {
+                excludedStates: "="
+            },
+            templateUrl: "dashboard/sidebar/sidebar.html",
+            link: function(scope, elem, attrs) {
+                scope.isSelected = function(state) {
+                    return scope.excludedStates.every(function(excludedState) {
+                        return excludedState !== state;
+                    });
+                };
+            }
         };
         return directive;
     }

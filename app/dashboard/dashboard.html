@@ -1,6 +1,6 @@
 <div id="dashboard">
     <div class="speaker-cards">
-        <speaker-card ng-repeat="speaker in vm.speakers" speaker="speaker"></speaker-card>
+        <speaker-card ng-repeat="speaker in vm.speakers | filter: vm.masterFilterFunction" speaker="speaker"></speaker-card>
     </div>
-    <sidebar></sidebar>
+    <sidebar excluded-states="vm.excludedStates"></sidebar>
 </div>
