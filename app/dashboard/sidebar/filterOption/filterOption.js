@@ -1,7 +1,7 @@
 module.exports = function (module) {
     module.directive("filterOption", filterOption);
 
-	function filterOption() {
+    function filterOption() {
         var directive = {
             scope: {
                 class: "@",
@@ -9,6 +9,6 @@ module.exports = function (module) {
             },
             templateUrl: "dashboard/sidebar/filterOption/filterOption.html"
         };
-		return directive;
-	}
+        return directive;
+    }
 };
