@@ -1,4 +1,4 @@
-FROM node
+FROM node:4.3.2-wheezy
 
 RUN npm install -g webpack 
 RUN npm install -g gulp
