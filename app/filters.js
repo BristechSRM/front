@@ -5,7 +5,6 @@ module.exports = function (module) {
           for (var i = 0;i < input;i++) {
               out += "★";
           }
-
           return out;
       };
   });
