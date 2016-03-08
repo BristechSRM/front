@@ -4,23 +4,19 @@ module.exports = function (module) {
     function sidebar() {
         var directive = {
             scope: {
-                excludedStates: "="
+                excludedStatesList: "="
             },
             templateUrl: "dashboard/sidebar/sidebar.html",
             link: function(scope, elem, attrs) {
                 scope.isSelected = function(state) {
-                    return scope.excludedStates.every(function(excludedState) {
-                        return excludedState !== state;
-                    });
+                    return !this.excludedStatesList.hasState(state);
                 };
                 scope.toggleSelected = function(state) {
-                    var checked = scope.isSelected(state);
-                    if (!checked) {
-                        scope.excludedStates = scope.excludedStates.filter(function(excludedState) {
-                            return excludedState !== state;
-                        });
+                    var excluded = scope.isSelected(state);
+                    if (excluded) {
+                        scope.excludedStatesList.addState(state);
                     } else {
-                        scope.excludedStates.push(state);
+                        scope.excludedStatesList.removeState(state);
                     }
                 };
             }
