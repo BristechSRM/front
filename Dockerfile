@@ -4,7 +4,7 @@ RUN npm install -g webpack
 RUN npm install -g gulp
 RUN npm config set bin-links true
 
-VOLUME ["/code"]
+VOLUME ["/code/build"]
 
 COPY . /code
 
