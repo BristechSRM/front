@@ -1,3 +1,10 @@
+$unassigned-color: #D0D0D0;
+$assigned-color: #373736;
+$in-progress-color: #F49A39;
+$deferred-color: #7F1438;
+$topic-approved-color: #257979;
+$date-assigned-color: #86AB35;
+
 body {
     background-color: #EDEDED;
 }
@@ -73,7 +80,6 @@ body {
 .speaker-card-footer {
     height:82px;
     text-align: center;
-    background-color: #257979;
     color: #fff;
     font-family: arial;
 
@@ -91,4 +97,28 @@ body {
             font-weight: bold;
         }
     }
+}
+
+.speaker-card-footer.unassigned {
+    background-color: $unassigned-color;
+}
+
+.speaker-card-footer.assigned {
+    background-color: $assigned-color;
+}
+
+.speaker-card-footer.in-progress {
+    background-color: $in-progress-color;
+}
+
+.speaker-card-footer.deferred {
+    background-color: $deferred-color;
+}
+
+.speaker-card-footer.topic-approved {
+    background-color: $topic-approved-color;
+}
+
+.speaker-card-footer.date-assigned {
+    background-color: $date-assigned-color;
 }

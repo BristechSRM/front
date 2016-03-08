@@ -14,7 +14,7 @@
         </div>
         <div class="title">{{speaker.title}}</div>
     </div>
-    <div class="speaker-card-footer">
+    <div class="speaker-card-footer {{statusToCssClass(speaker.speakerStatus)}}">
         <div class="speaker-name">{{speaker.name}}</div>
         <div class="last-contacted">Last contacted - <span class="date">{{speaker.lastContacted | date: 'dd MMMM yyyy'}}</span></div>
     </div>
