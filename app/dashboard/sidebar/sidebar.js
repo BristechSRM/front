@@ -13,6 +13,16 @@ module.exports = function (module) {
                         return excludedState !== state;
                     });
                 };
+                scope.toggleSelected = function(state) {
+                    var checked = scope.isSelected(state);
+                    if (!checked) {
+                        scope.excludedStates = scope.excludedStates.filter(function(excludedState) {
+                            return excludedState !== state;
+                        });
+                    } else {
+                        scope.excludedStates.push(state);
+                    }
+                };
             }
         };
         return directive;

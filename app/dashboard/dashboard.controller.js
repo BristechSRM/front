@@ -7,7 +7,7 @@ module.exports = function (module) {
         speakerService.getSpeakers().then(function (data){
             vm.speakers = data;
         });
-        vm.excludedStates = [3,5];
+        vm.excludedStates = [];
         vm.masterFilterFunction = function(speaker){
             return stateFilter(speaker);
         };
