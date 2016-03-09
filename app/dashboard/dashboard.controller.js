@@ -7,20 +7,18 @@ module.exports = function (module) {
         speakerService.getSpeakers().then(function (data) {
             vm.speakers = data;
         });
-        vm.excludedStatesList = new StatesList([]);
+        vm.excludedStatesList = new StatesList();
 
         vm.masterFilterFunction = function(speaker) {
             return stateFilter(speaker);
         };
 
         function stateFilter(speaker) {
-            return vm.excludedStatesList.states.every(function(state){
-                return speaker.speakerStatus !== state;
-            });
+            return !vm.excludedStatesList.hasState(speaker.speakerStatus);
         }
 
-        function StatesList(states) {
-            this.states = states;
+        function StatesList() {
+            this.states = [];
             this.removeState = function(stateToRemove) {
                 this.states = this.states.filter(function(state) {
                     return state !== stateToRemove;
