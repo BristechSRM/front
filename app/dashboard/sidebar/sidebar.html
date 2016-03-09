@@ -9,10 +9,7 @@
     </div>
 
     <h1>Sort By</h1>
-    <select ng-model="sortPreference.key">
-        <option value="rating">Rating</option>
-        <option value="name">Name</option>
-    </select>
+    <select ng-model="sortPreference.key" ng-options="sortOption.key as sortOption.label for sortOption in sortOptions"></select>
     <br />
     <label><input type="checkbox" ng-model="sortPreference.isDesc" />Descending Order</label>
 </div>

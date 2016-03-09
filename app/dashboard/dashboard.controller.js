@@ -8,7 +8,7 @@ module.exports = function (module) {
             vm.speakers = data;
         });
         vm.excludedStatusesList = new StatusList();
-        vm.sortPreference = new SortPreference('rating',true);
+        vm.sortPreference = new SortPreference("rating", true);
 
         vm.masterFilterFunction = function(speaker) {
             return statusFilter(speaker);
@@ -18,7 +18,7 @@ module.exports = function (module) {
             return !vm.excludedStatusesList.hasStatus(speaker.speakerStatus);
         }
 
-        function SortPreference(key, isDesc){
+        function SortPreference(key, isDesc) {
             this.key =  key;
             this.isDesc = isDesc;
         }
