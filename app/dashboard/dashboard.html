@@ -1,6 +1,6 @@
 <div id="dashboard">
     <div class="speaker-cards">
-        <speaker-card ng-repeat="speaker in vm.speakers | filter: vm.masterFilterFunction" speaker="speaker"></speaker-card>
+        <speaker-card ng-repeat="speaker in vm.speakers | filter: vm.masterFilterFunction | orderBy: vm.sortPreference.key : vm.sortPreference.isDesc " speaker="speaker"></speaker-card>
     </div>
-    <sidebar excluded-states-list="vm.excludedStatesList"></sidebar>
+    <sidebar excluded-statuses-list="vm.excludedStatusesList" sort-preference="vm.sortPreference"></sidebar>
 </div>

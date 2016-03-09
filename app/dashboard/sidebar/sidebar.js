@@ -4,21 +4,31 @@ module.exports = function (module) {
     function sidebar() {
         var directive = {
             scope: {
-                excludedStatesList: "="
+                excludedStatusesList: "=",
+                sortPreference: "="
             },
             templateUrl: "dashboard/sidebar/sidebar.html",
             link: function(scope, elem, attrs) {
-                scope.isSelected = function(state) {
-                    return !this.excludedStatesList.hasState(state);
+                scope.sortOptions = [
+                    new SortOption("rating", "Rating"),
+                    new SortOption("name", "Name")
+                ];
+                scope.isSelected = function(status) {
+                    return !this.excludedStatusesList.hasStatus(status);
                 };
-                scope.toggleSelected = function(state) {
-                    var wasExcluded = scope.excludedStatesList.hasState(state);
+                scope.toggleSelected = function(status) {
+                    var wasExcluded = scope.excludedStatusesList.hasStatus(status);
                     if (wasExcluded) {
-                        scope.excludedStatesList.removeState(state);
+                        scope.excludedStatusesList.removeStatus(status);
                     } else {
-                        scope.excludedStatesList.addState(state);
+                        scope.excludedStatusesList.addStatus(status);
                     }
                 };
+
+                function SortOption(key, label) {
+                    this.key = key;
+                    this.label = label;
+                }
             }
         };
         return directive;

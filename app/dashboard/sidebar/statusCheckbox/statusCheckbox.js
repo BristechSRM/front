@@ -1,14 +1,14 @@
 module.exports = function (module) {
-    module.directive("stateCheckbox", stateCheckbox);
+    module.directive("statusCheckbox", statusCheckbox);
 
-    function stateCheckbox() {
+    function statusCheckbox() {
         var directive = {
             scope: {
                 class: "@",
                 label: "@",
                 checked: "="
             },
-            templateUrl: "dashboard/sidebar/stateCheckbox/stateCheckbox.html"
+            templateUrl: "dashboard/sidebar/statusCheckbox/statusCheckbox.html"
         };
         return directive;
     }

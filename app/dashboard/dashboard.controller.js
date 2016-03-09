@@ -7,30 +7,37 @@ module.exports = function (module) {
         speakerService.getSpeakers().then(function (data) {
             vm.speakers = data;
         });
-        vm.excludedStatesList = new StatesList();
+
+        vm.excludedStatusesList = new StatusList();
+        vm.sortPreference = new SortPreference("rating", true);
 
         vm.masterFilterFunction = function(speaker) {
-            return stateFilter(speaker);
+            return statusFilter(speaker);
         };
 
-        function stateFilter(speaker) {
-            return !vm.excludedStatesList.hasState(speaker.speakerStatus);
+        function statusFilter(speaker) {
+            return !vm.excludedStatusesList.hasStatus(speaker.speakerStatus);
         }
 
-        function StatesList() {
-            this.states = [];
-            this.removeState = function(stateToRemove) {
-                this.states = this.states.filter(function(state) {
-                    return state !== stateToRemove;
+        function SortPreference(key, isDesc) {
+            this.key =  key;
+            this.isDesc = isDesc;
+        }
+
+        function StatusList() {
+            this.statuses = [];
+            this.removeStatus = function(statusToRemove) {
+                this.statuses = this.statuses.filter(function(status) {
+                    return status !== statusToRemove;
                 });
             };
-            this.addState = function(stateToAdd) {
-                this.removeState(stateToAdd);
-                this.states.push(stateToAdd);
+            this.addStatus = function(statusToAdd) {
+                this.removeStatus(statusToAdd);
+                this.statuses.push(statusToAdd);
             };
-            this.hasState = function(stateToCheck) {
-                return this.states.some(function(state) {
-                    return state === stateToCheck;
+            this.hasStatus = function(statusToCheck) {
+                return this.statuses.some(function(status) {
+                    return status === statusToCheck;
                 });
             };
         }
