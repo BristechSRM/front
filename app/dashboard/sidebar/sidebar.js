@@ -4,7 +4,8 @@ module.exports = function (module) {
     function sidebar() {
         var directive = {
             scope: {
-                excludedStatusesList: "="
+                excludedStatusesList: "=",
+                sortPreference: "="
             },
             templateUrl: "dashboard/sidebar/sidebar.html",
             link: function(scope, elem, attrs) {
