@@ -5,8 +5,8 @@ $deferred-color: #7F1438;
 $topic-approved-color: #257979;
 $date-assigned-color: #86AB35;
 
-$states: unassigned assigned in-progress deferred topic-approved date-assigned;
-$state-colors: $unassigned-color $assigned-color $in-progress-color $deferred-color $topic-approved-color $date-assigned-color;
+$statuses: unassigned assigned in-progress deferred topic-approved date-assigned;
+$status-colors: $unassigned-color $assigned-color $in-progress-color $deferred-color $topic-approved-color $date-assigned-color;
 
 
 body {
@@ -14,11 +14,11 @@ body {
 }
 
 
-@mixin assign-state-colors($selector, $property) {
-    @each $state in $states {
-        $i: index($states, $state);
-        #{$selector}.#{$state} {
-            #{$property}: nth($state-colors, $i);
+@mixin assign-status-colors($selector, $property) {
+    @each $status in $statuses {
+        $i: index($statuses, $status);
+        #{$selector}.#{$status} {
+            #{$property}: nth($status-colors, $i);
         }
     }
 }
@@ -127,7 +127,7 @@ body {
     }
 }
 
-@include assign-state-colors(".speaker-card-footer", "background-color");
+@include assign-status-colors(".speaker-card-footer", "background-color");
 
 .sidebar {
     h1 {
@@ -139,7 +139,7 @@ body {
     }
 }
 
-.state-checkbox {
+.status-checkbox {
     display: flex;
     align-items: center;
 
@@ -159,7 +159,7 @@ body {
             fill: $unassigned-color;
         }
 
-        @include assign-state-colors("rect", "fill");
+        @include assign-status-colors("rect", "fill");
     }
 
     .label {
