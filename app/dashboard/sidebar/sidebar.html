@@ -7,4 +7,9 @@
         <status-checkbox label="Topic approved" class="topic-approved" checked="isSelected(4)" ng-click="toggleSelected(4)"></status-checkbox>
         <status-checkbox label="Date assigned" class="date-assigned" checked="isSelected(5)" ng-click="toggleSelected(5)"></status-checkbox>
     </div>
+
+    <h1>Sort By</h1>
+    <select ng-model="sortPreference.key" ng-options="sortOption.key as sortOption.label for sortOption in sortOptions"></select>
+    <br />
+    <label><input type="checkbox" ng-model="sortPreference.isDesc" />Descending Order</label>
 </div>

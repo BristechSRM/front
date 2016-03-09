@@ -4,10 +4,15 @@ module.exports = function (module) {
     function sidebar() {
         var directive = {
             scope: {
-                excludedStatusesList: "="
+                excludedStatusesList: "=",
+                sortPreference: "="
             },
             templateUrl: "dashboard/sidebar/sidebar.html",
             link: function(scope, elem, attrs) {
+                scope.sortOptions = [
+                    new SortOption("rating", "Rating"),
+                    new SortOption("name", "Name")
+                ];
                 scope.isSelected = function(status) {
                     return !this.excludedStatusesList.hasStatus(status);
                 };
@@ -19,6 +24,11 @@ module.exports = function (module) {
                         scope.excludedStatusesList.addStatus(status);
                     }
                 };
+
+                function SortOption(key, label) {
+                    this.key = key;
+                    this.label = label;
+                }
             }
         };
         return directive;
