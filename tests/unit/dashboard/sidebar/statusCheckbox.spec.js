@@ -10,23 +10,22 @@ describe('statusCheckbox', function() {
         $rootScope = _$rootScope_;
     }));
 
-    function compileElement(label, classes, checked, functionName) {
+    function compileElement(label, classes, checked) {
         var html = "<status-checkbox label=\"" + label
             + "\" class=\"" + classes
-            + "\" checked=\"" + checked
-            + "\" ng-click=\"" + functionName + "()\"></status-checkbox>";
+            + "\" checked=\"" + checked + "\"></status-checkbox>";
         var element = $compile(html)($rootScope);
         $rootScope.$digest();
         return element;
     }
 
     it("displays label", function() {
-        var element = compileElement("My label", "className", true, "onClick");
+        var element = compileElement("My label", "className", true);
         expect(element.html()).toContain("My label");
     });
 
     it("sets rectangle classes", function() {
-        var element = compileElement("My label", "className1 className2", true, "onClick");
+        var element = compileElement("My label", "className1 className2", true);
         var rect = getRect(element);
         var classes = rect.attr("class").split(" ");
         var containsAll = ["className1", "className2"].every(function(className) {
@@ -36,13 +35,13 @@ describe('statusCheckbox', function() {
     });
 
     it("checks checkbox if checked true", function() {
-        var element = compileElement("My label", "className", true, "onClick");
+        var element = compileElement("My label", "className", true);
         var checkbox = getCheckbox(element);
         expect(checkbox.attr("checked")).toBeTruthy;
     });
 
     it("checks checkbox if checked false", function() {
-        var element = compileElement("My label", "className", false, "onClick");
+        var element = compileElement("My label", "className", false);
         var checkbox = getCheckbox(element);
         expect(checkbox.attr("checked")).toBeFalsy;
     });
