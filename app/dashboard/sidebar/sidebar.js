@@ -12,11 +12,11 @@ module.exports = function (module) {
                     return !this.excludedStatesList.hasState(state);
                 };
                 scope.toggleSelected = function(state) {
-                    var excluded = scope.isSelected(state);
-                    if (excluded) {
-                        scope.excludedStatesList.addState(state);
-                    } else {
+                    var wasExcluded = scope.excludedStatesList.hasState(state);
+                    if (wasExcluded) {
                         scope.excludedStatesList.removeState(state);
+                    } else {
+                        scope.excludedStatesList.addState(state);
                     }
                 };
             }
