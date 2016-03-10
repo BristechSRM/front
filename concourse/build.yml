@@ -1,6 +1,6 @@
 platform: linux
 
-image: docker:///bristechsrm/build_image
+image: docker:///thull/bristechfrontbuild
 
 inputs:
 - name: code
