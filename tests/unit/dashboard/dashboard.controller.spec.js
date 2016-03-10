@@ -61,6 +61,10 @@ describe('DashboardController', function() {
         });
     });
 
+    var $controller;
+    var $rootScope;
+    var mockSpeakerService;
+
     beforeEach(inject(function(_$controller_, _$rootScope_, _speakerService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
