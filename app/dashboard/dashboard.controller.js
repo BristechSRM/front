@@ -1,8 +1,8 @@
 module.exports = function (module) {
     module.controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ['speakerService', 'StatusList'];
-    function DashboardController(speakerService, StatusList) {
+    DashboardController.$inject = ['speakerService', 'StatusList', 'SortPreference'];
+    function DashboardController(speakerService, StatusList, SortPreference) {
         var vm = this;
         speakerService.getSpeakers().then(function (data) {
             vm.speakers = data;
@@ -17,11 +17,6 @@ module.exports = function (module) {
 
         function statusFilter(speaker) {
             return !vm.excludedStatusesList.hasStatus(speaker.speakerStatus);
-        }
-
-        function SortPreference(key, isDesc) {
-            this.key =  key;
-            this.isDesc = isDesc;
         }
     }
 };
