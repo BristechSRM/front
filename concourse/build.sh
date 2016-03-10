@@ -8,6 +8,6 @@ npm install -g gulp
 npm install 
 gulp build
 cd ..
-cp code/build/* gulped/
+cp -R code/build/* gulped/
 ls code/build 
  
