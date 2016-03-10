@@ -27,31 +27,31 @@ describe('sidebar', function() {
         return element;
     }
 
-    it("isSelected returns true if status not excluded", function() {
+    it("isIncluded returns true if status should be checked", function() {
         var element = compileElement(excludedStatusesList, pref);
         var isolatedScope = element.isolateScope();
-        expect(isolatedScope.isSelected(1)).toBe(true);
+        expect(isolatedScope.isIncluded(1)).toBe(true);
     });
 
-    it("isSelected returns false if status excluded", function() {
+    it("isIncluded returns false if status should be unchecked", function() {
         excludedStatusesList.addStatus(2);
         var element = compileElement(excludedStatusesList, pref);
         var isolatedScope = element.isolateScope();
-        expect(isolatedScope.isSelected(2)).toBe(false);
+        expect(isolatedScope.isIncluded(2)).toBe(false);
     });
 
-    it("toggleSelected excludes included state", function() {
+    it("toggleIncluded excludes a currently included status", function() {
         var element = compileElement(excludedStatusesList, pref);
         var isolatedScope = element.isolateScope();
-        isolatedScope.toggleSelected(1);
+        isolatedScope.toggleIncluded(1);
         expect(isolatedScope.excludedStatusesList.statuses).toEqual([1]);
     });
 
-    it("toggleSelected includes excluded state", function() {
+    it("toggleIncluded includes a currently excluded status", function() {
         excludedStatusesList.addStatus(1);
         var element = compileElement(excludedStatusesList, pref);
         var isolatedScope = element.isolateScope();
-        isolatedScope.toggleSelected(1);
+        isolatedScope.toggleIncluded(1);
         expect(isolatedScope.excludedStatusesList.statuses).toEqual([]);
     });
 
