@@ -1,0 +1,10 @@
+platform: linux
+
+image: docker:///busybox
+
+inputs:
+- name: code
+- name: gulped 
+
+run:
+  path: code/concourse/list.sh

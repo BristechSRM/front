@@ -1,0 +1,12 @@
+platform: linux
+
+image: docker:///node:4.3.2-wheezy
+
+inputs:
+- name: code
+
+outputs:
+- name: gulped
+
+run:
+  path: code/concourse/build.sh
