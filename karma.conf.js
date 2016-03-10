@@ -20,6 +20,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         './app/app.module.js',
+        './app/**/*.html',
         './node_modules/angular-mocks/angular-mocks.js',
         './tests/unit/**/*.js'
     ],
@@ -31,9 +32,15 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         './app/app.module.js' : ['webpack'],
+        './app/**/*.html': ['ng-html2js'],
         'tests/unit/**/*.js': ['webpack']
     },
 
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'app/',
+      moduleName: 'template-module'
+      },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

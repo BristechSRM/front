@@ -1,11 +1,22 @@
 module.exports = function (module) {
     module.controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ['speakerService'];
-    function DashboardController(speakerService) {
+    DashboardController.$inject = ['speakerService', 'StatusList', 'SortPreference'];
+    function DashboardController(speakerService, StatusList, SortPreference) {
         var vm = this;
-        speakerService.getSpeakers().then(function (data){
+        speakerService.getSpeakers().then(function (data) {
             vm.speakers = data;
         });
+
+        vm.excludedStatusesList = new StatusList();
+        vm.sortPreference = new SortPreference("rating", true);
+
+        vm.masterFilterFunction = function(speaker) {
+            return statusFilter(speaker);
+        };
+
+        function statusFilter(speaker) {
+            return !vm.excludedStatusesList.hasStatus(speaker.speakerStatus);
+        }
     }
 };
