@@ -2,7 +2,7 @@
 // Generated on Thu Feb 18 2016 09:04:41 GMT-0800 (PST)
 
 module.exports = function(config) {
-  var webpackConfig = require("./webpack.config.js")
+  var webpackConfig = JSON.parse(JSON.stringify(require("./webpack.config.js")));
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
