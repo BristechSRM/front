@@ -14,6 +14,7 @@
     "jasmine-core": "~2.4.1",
     "karma": "~0.13.21",
     "karma-jasmine": "~0.3.7",
+    "karma-ng-html2js-preprocessor": "~0.2.1",
     "karma-nyan-reporter": "~0.2.3",
     "karma-phantomjs-launcher": "~1.0.0",
     "karma-webpack": "~1.7.0",
