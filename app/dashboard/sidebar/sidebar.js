@@ -1,7 +1,8 @@
 module.exports = function (module) {
     module.directive("sidebar", sidebar);
 
-    function sidebar() {
+    sidebar.$inject = ['SortOption'];
+    function sidebar(SortOption) {
         var directive = {
             scope: {
                 excludedStatusesList: "=",
@@ -24,11 +25,6 @@ module.exports = function (module) {
                         scope.excludedStatusesList.addStatus(status);
                     }
                 };
-
-                function SortOption(key, label) {
-                    this.key = key;
-                    this.label = label;
-                }
             }
         };
         return directive;
