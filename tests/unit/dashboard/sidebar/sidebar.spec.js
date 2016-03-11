@@ -21,7 +21,7 @@ describe('sidebar', function() {
     function compileElement(list, preference) {
         $rootScope.list = list;
         $rootScope.preference = preference;
-        var html = "<sidebar excluded-statuses-list=\"list\" sort-preference=\"preference\"></sidebar>";
+        var html = '<sidebar excluded-statuses-list="list" sort-preference="preference"></sidebar>';
         var element = $compile(html)($rootScope);
         $rootScope.$digest();
         return element;

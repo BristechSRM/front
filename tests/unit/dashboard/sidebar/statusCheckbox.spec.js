@@ -11,9 +11,9 @@ describe('statusCheckbox', function() {
     }));
 
     function compileElement(label, classes, checked) {
-        var html = "<status-checkbox label=\"" + label
-            + "\" class=\"" + classes
-            + "\" checked=\"" + checked + "\"></status-checkbox>";
+        var html = '<status-checkbox label="' + label
+            + '" class="' + classes
+            + '" checked="' + checked + '"></status-checkbox>';
         var element = $compile(html)($rootScope);
         $rootScope.$digest();
         return element;
