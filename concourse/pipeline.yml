@@ -1,3 +1,8 @@
+resource_types:
+  - name: statics3
+    type: docker-image
+    source:
+      repository: bristechsrm/push_s3 
 jobs:
 - name: build
   public: true
@@ -8,11 +13,6 @@ jobs:
   - task: build
     file: code/concourse/build.yml
   - put: frontbucket
-resource-type:
-  - name: statics3
-    type: docker-image
-    soruce:
-      repository: thull/statucs3
 resources:
 - name: code
   type: git
