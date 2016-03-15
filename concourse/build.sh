@@ -9,5 +9,4 @@ npm install
 gulp build
 cd ..
 cp -R code/build/* gulped/
-ls code/build 
  
