@@ -1,0 +1,12 @@
+platform: linux
+
+image: docker:///bristechsrm/build-front
+
+inputs:
+- name: code
+
+outputs:
+- name: gulped
+
+run:
+  path: code/concourse/build.sh

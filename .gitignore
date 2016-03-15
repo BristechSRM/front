@@ -6,3 +6,6 @@ node_modules/
 
 # Npm debug logs
 npm-debug.log.*
+
+# Concourse creds
+concourse/credentials.yml
