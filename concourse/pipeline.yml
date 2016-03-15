@@ -13,6 +13,7 @@ jobs:
   - task: build
     file: code/concourse/build.yml
   - put: frontbucket
+    params: {build: gulped}
 resources:
 - name: code
   type: git
