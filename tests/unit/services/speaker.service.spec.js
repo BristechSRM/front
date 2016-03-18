@@ -16,7 +16,7 @@ describe('BristechSRM', function() {
         });
     });
 
-    beforeEach(inject(function(_speakerService_, _$httpBackend_, $templateCache){
+    beforeEach(inject(function(_speakerService_, _$httpBackend_){
         service = _speakerService_;
         $httpBackend = _$httpBackend_;
     }));
