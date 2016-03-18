@@ -1,5 +1,6 @@
 describe('DashboardController', function() {
     beforeEach(angular.mock.module('BristechSRM'));
+    beforeEach(angular.mock.module('template-module'));
 
     var speakers = [
         {
