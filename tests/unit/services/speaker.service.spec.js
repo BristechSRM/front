@@ -1,4 +1,4 @@
-describe('BristechSRM', function() {
+describe('Speaker service', function() {
     var service, $httpBackend;
 
     var backend = {url : 'http://api.bris.tech', port: 80};
