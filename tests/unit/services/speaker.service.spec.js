@@ -1,8 +1,6 @@
 describe('Speaker service', function() {
-    var service, $httpBackend;
+    var service, $httpBackend, backendFullUrl;
 
-    var backend = {url : 'http://api.bris.tech', port: 80};
-    var backendFullUrl = backend.url + ":" + backend.port + "/speakers";
     var speakers = [
         {Name: "Joe Bloggs"}
     ];
@@ -10,15 +8,10 @@ describe('Speaker service', function() {
     beforeEach(angular.mock.module('BristechSRM'));
     beforeEach(angular.mock.module('template-module'));
 
-    beforeEach(function() {
-        angular.mock.module('BristechSRM', function($provide){
-          $provide.constant('BACKEND', backend);
-        });
-    });
-
-    beforeEach(inject(function(_speakerService_, _$httpBackend_){
+    beforeEach(inject(function(_speakerService_, _$httpBackend_, _BACKEND_){
         service = _speakerService_;
         $httpBackend = _$httpBackend_;
+        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.port + "/speakers";
     }));
 
     describe('getSpeakers makes get request', function(){
