@@ -15,9 +15,9 @@ module.exports = function (module) {
 
         function link(scope, elem, attrs) {
             scope.sortOptions = [
-                new SortOption("rating", "Rating"),
-                new SortOption("name", "Name"),
-                new SortOption("lastContacted", "Last Contacted")
+                new SortOption("speakerRating", "Rating"),
+                new SortOption("speakerName", "Name"),
+                new SortOption("speakerLastContacted", "Last Contacted")
             ];
             scope.isIncluded = function(status) {
                 return !this.excludedStatusesList.hasStatus(status);

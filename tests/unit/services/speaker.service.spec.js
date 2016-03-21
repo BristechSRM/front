@@ -2,7 +2,7 @@ describe('Speaker service', function() {
     var service, $httpBackend, backendFullUrl;
 
     var speakers = [
-        {Name: "Joe Bloggs"}
+        {speakerName: "Joe Bloggs"}
     ];
 
     beforeEach(angular.mock.module('BristechSRM'));
@@ -11,7 +11,7 @@ describe('Speaker service', function() {
     beforeEach(inject(function(_speakerService_, _$httpBackend_, _BACKEND_){
         service = _speakerService_;
         $httpBackend = _$httpBackend_;
-        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.port + "/speakers";
+        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.port + "/talkoutlines";
     }));
 
     describe('getSpeakers makes get request', function(){
