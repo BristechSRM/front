@@ -1,26 +1,42 @@
 module.exports = function(module) {
     module.factory("commsService", commsService);
 
-    commsService.$inject = ["$http", "BACKEND"];
-    function commsService($http, BACKEND) {
+    commsService.$inject = ["$http", "BACKEND", "$q"];
+    function commsService($http, BACKEND, $q) {
         var service = {
-            getLastContacted : getLastContacted,
-            hello : "Hello"
+            fetchLastContacted : fetchLastContacted,
+            attachComms: attachComms
         };
 
         var apiBaseUrl = BACKEND.url + ':' + BACKEND.port;
-        var speakerCommsUrl = "http://api.bris.tech:8080";
+        var speakerCommsUrl = "http://localhost:8080";
         var lastContactedUrl = speakerCommsUrl + "/last-contacted";
-        var speakers = [];
-        console.log(getLastContacted);
-        console.log(service.hello)
+        var comms;
 
         return service;
 
-        function getLastContacted() {
+        function fetchLastContacted() {
             return $http.get(lastContactedUrl).then(function(result) {
-                return result.data;
+                comms = result.data;
+                return comms;
             });
+        }
+
+        function attachComms(speakers) {
+            if (comms === undefined) {
+                return fetchLastContacted().then(function(comms) {
+                    return attachComms(speakers);
+                });
+            } else {
+                return $q(function(resolve, reject){
+                    for(var i in speakers) {
+                        var speaker = speakers[i];
+                        speaker.lastContacted = comms[speaker.email] !== undefined? comms[speaker.email] : "unkown";
+                    }    
+                    resolve();
+                })
+                
+            }
         }
     }
 

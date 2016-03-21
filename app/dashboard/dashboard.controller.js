@@ -4,19 +4,11 @@ module.exports = function (module) {
     DashboardController.$inject = ['speakerService', 'commsService', 'StatusList', 'SortPreference'];
     function DashboardController(speakerService, commsService, StatusList, SortPreference) {
         var vm = this;
+
+        commsService.fetchLastContacted();
         speakerService.getSpeakers().then(function (data) {
             vm.speakers = data;
-            if(vm.speakerComms !== undefined){
-              mapSpeakerSpeakerComms(data, vm.speakerComms);
-            }
-        });
-
-        commsService.getLastContacted().then(function (data) {
-            vm.speakerComms = data;
-
-            if(vm.speakers !== undefined) {
-                mapSpeakerSpeakerComms(vm.speakers, data);
-            }
+            commsService.attachComms(vm.speakers);
         });
 
         vm.excludedStatusesList = new StatusList();
@@ -28,13 +20,6 @@ module.exports = function (module) {
 
         function statusFilter(speaker) {
             return !vm.excludedStatusesList.hasStatus(speaker.status);
-        }
-
-        function mapSpeakerSpeakerComms(speakers, speakerComms) {
-            for(var i in speakers) {
-                var speaker = speakers[i];
-                speaker.lastContacted = speakerComms[speaker.email] !== undefined? speakerComms[speaker.email] : "unkown";
-            }
         }
     }
 };
