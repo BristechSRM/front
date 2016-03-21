@@ -2,8 +2,6 @@
 
 set -e
 cd code
-npm install -g webpack
-npm install -g gulp
 
 npm install 
 gulp build
