@@ -4,48 +4,54 @@ describe('DashboardController', function() {
 
     var speakers = [
         {
-            "name":"Thomas Hull",
+            "talkId":1,
+            "speakerName":"Thomas Hull",
             "title":"To know javascript is to love javascript",
-            "rating":5,
-            "admin":"David Wybourn",
+            "speakerRating":5,
+            "adminName":"David Wybourn",
             "adminImageUrl":"https://placebear.com/50/50",
-            "lastContacted":"1970-01-01",
-            "speakerStatus":1
+            "speakerLastContacted":"1970-01-01",
+            "status":1
         },
         {
-            "name":"Jason Ebbin",
+            "talkId":2,
+            "speakerName":"Jason Ebbin",
             "title":"How dull is F#",
-            "rating":3,"admin":"Jason Ebbin",
+            "speakerRating":3,
+            "adminName":"Jason Ebbin",
             "adminImageUrl":"https://placebear.com/50/50",
-            "lastContacted":"1989-11-09",
-            "speakerStatus":3
+            "speakerLastContacted":"1989-11-09",
+            "status":3
         },
         {
-            "name":"David Wybourn",
+            "talkId":3,
+            "speakerName":"David Wybourn",
             "title":"Concourse: Where I met myself",
-            "rating":5,
-            "admin":"Chris James Smith",
+            "speakerRating":5,
+            "adminName":"Chris James Smith",
             "adminImageUrl":"https://placebear.com/50/50",
-            "lastContacted":"2015-10-21",
-            "speakerStatus":4
+            "speakerLastContacted":"2015-10-21",
+            "status":4
         },
         {
-            "name":"Joe Bloggs",
+            "talkId":4,
+            "speakerName":"Joe Bloggs",
             "title":"",
-            "rating":0,
-            "admin":"Thomas Hull",
+            "speakerRating":0,
+            "adminName":"Thomas Hull",
             "adminImageUrl":"https://placebear.com/50/50",
-            "lastContacted":"2016-02-19",
-            "speakerStatus":2
+            "speakerLastContacted":"2016-02-19",
+            "status":2
         },
         {
-            "name":"Chris Smith",
+            "talkId":5,
+            "speakerName":"Chris Smith",
             "title":"C# or F#: Which is sharper?",
-            "rating":4,
-            "admin":"Thomas Hull",
+            "speakerRating":4,
+            "adminName":"Thomas Hull",
             "adminImageUrl":"https://placebear.com/50/50",
-            "lastContacted":"2016-01-10",
-            "speakerStatus":5
+            "speakerLastContacted":"2016-01-10",
+            "status":5
         }
     ];
 
@@ -104,7 +110,7 @@ describe('DashboardController', function() {
 
     it("speakers sorted by rating in descending order by default", function() {
         var controller = createController({});
-        expect(controller.sortPreference.key).toBe("rating");
+        expect(controller.sortPreference.key).toBe("speakerRating");
         expect(controller.sortPreference.isDesc).toBe(true);
     });
 

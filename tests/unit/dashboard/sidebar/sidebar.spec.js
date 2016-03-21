@@ -15,7 +15,7 @@ describe('sidebar', function() {
         StatusList = _StatusList_;
         SortPreference = _SortPreference_;
         excludedStatusesList = new StatusList();
-        pref = new SortPreference('name', true);
+        pref = new SortPreference('speakerName', true);
     }));
 
     function compileElement(list, preference) {
