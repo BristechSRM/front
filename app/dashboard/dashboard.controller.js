@@ -9,14 +9,14 @@ module.exports = function (module) {
         });
 
         vm.excludedStatusesList = new StatusList();
-        vm.sortPreference = new SortPreference("rating", true);
+        vm.sortPreference = new SortPreference("speakerRating", true);
 
         vm.masterFilterFunction = function(speaker) {
             return statusFilter(speaker);
         };
 
         function statusFilter(speaker) {
-            return !vm.excludedStatusesList.hasStatus(speaker.speakerStatus);
+            return !vm.excludedStatusesList.hasStatus(speaker.status);
         }
     }
 };

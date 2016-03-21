@@ -11,13 +11,14 @@ describe('speakerCard', function() {
     }));
 
     var speaker = {
-        "name":"Thomas Hull",
+        "talkId":1,
+        "speakerName":"Thomas Hull",
         "title":"To know javascript is to love javascript",
-        "rating":5,
-        "admin":"David Wybourn",
+        "speakerRating":5,
+        "adminName":"David Wybourn",
         "adminImageUrl":"https://placebear.com/50/50",
-        "lastContacted":"1970-01-01T00:00:00",
-        "speakerStatus":1
+        "speakerLastContacted":"1970-01-01T00:00:00",
+        "status":1
     };
 
     function compileElement(speaker) {
