@@ -7,5 +7,5 @@ require("./app.routes.js")(module);
 require('./filters/stars.filter')(module);
 require('./dashboard')(module);
 require('./models')(module);
+require("./services/comms.service.js")(module);
 require("./services/speaker.service.js")(module);
-require("./services/speaker.comms.service.js")(module);
