@@ -66,11 +66,16 @@ describe('DashboardController', function() {
                 }
             });
             $provide.factory("commsService", function($q) {
-                var spy = jasmine.createSpy("getLastContacted").and.callFake(function() {
+                var fetchSpy = jasmine.createSpy("fetchLastContacted").and.callFake(function() {
+                    return $q.resolve(speakers);
+                });
+                var attachSpy = jasmine.createSpy("attachComms").and.callFake(function() {
                     return $q.resolve(speakers);
                 });
                 return {
-                    getLastContacted: spy
+                    fetchLastContacted: fetchSpy,
+                    attachComms: attachSpy
+
                 }
             });
         });
@@ -90,8 +95,13 @@ describe('DashboardController', function() {
 
     it("gets the comms on instantiation", function() {
       var controller = createController({});
-      expect(mockCommsService.getLastContacted).toHaveBeenCalled();
+      expect(mockCommsService.fetchLastContacted).toHaveBeenCalled();
     });
+
+    it("attaches the comms to the speakers", function() {
+        var controller = createController();
+        expect(mockCommsService.attachComms).toHaveBeenCalled();
+    })
 
     it("gets speakers on instantiation", function() {
         var controller = createController({});
