@@ -1,17 +1,17 @@
 module.exports = function (module) {
     module.controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ['speakerService', 'speakerCommsService', 'StatusList', 'SortPreference'];
-    function DashboardController(speakerService, StatusList, SortPreference) {
+    DashboardController.$inject = ['speakerService', 'commsService', 'StatusList', 'SortPreference'];
+    function DashboardController(speakerService, commsService, StatusList, SortPreference) {
         var vm = this;
         speakerService.getSpeakers().then(function (data) {
             vm.speakers = data;
             if(vm.speakerComms !== undefined){
-              mapSpeakerSpeakerComms(data, vm.speakerComms)
+              mapSpeakerSpeakerComms(data, vm.speakerComms);
             }
         });
 
-        speakerCommsService.getSpeakers().then(function (data) {
+        commsService.getLastContacted().then(function (data) {
             vm.speakerComms = data;
 
             if(vm.speakers !== undefined) {
@@ -31,7 +31,8 @@ module.exports = function (module) {
         }
 
         function mapSpeakerSpeakerComms(speakers, speakerComms) {
-            for(var speaker of speakers) {
+            for(var i in speakers) {
+                var speaker = speakers[i];
                 speaker.lastContacted = speakerComms[speaker.email] !== undefined? speakerComms[speaker.email] : "unkown";
             }
         }
