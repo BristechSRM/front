@@ -59,18 +59,33 @@ describe('DashboardController', function() {
                     getSpeakers: spy
                 }
             });
+            $provide.factory("commsService", function($q) {
+                var spy = jasmine.createSpy("getLastContacted").and.callFake(function() {
+                    return $q.resolve(speakers);
+                });
+                return {
+                    getLastContacted: spy
+                }
+            });
         });
     });
 
     var $controller;
     var $rootScope;
     var mockSpeakerService;
+    var mockCommsService;
 
-    beforeEach(inject(function(_$controller_, _$rootScope_, _speakerService_) {
+    beforeEach(inject(function(_$controller_, _$rootScope_, _speakerService_, _commsService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         mockSpeakerService = _speakerService_;
+        mockCommsService =  _commsService_;
     }));
+
+    it("gets the comms on instantiation", function() {
+      var controller = createController({});
+      expect(mockCommsService.getLastContacted).toHaveBeenCalled();
+    });
 
     it("gets speakers on instantiation", function() {
         var controller = createController({});
