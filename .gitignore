@@ -5,6 +5,7 @@ node_modules/
 .Trash-*
 
 # Npm debug logs
+npm-debug.log
 npm-debug.log.*
 
 # Concourse creds

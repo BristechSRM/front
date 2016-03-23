@@ -16,6 +16,8 @@
     </div>
     <div class="speaker-card-footer {{statusToCssClass(speaker.status)}}">
         <div class="speaker-name">{{speaker.speakerName}}</div>
-        <div class="last-contacted">Last contacted - <span class="date">{{speaker.speakerLastContacted | date: 'dd MMMM yyyy'}}</span></div>
+        <div class="last-contacted" ng-if="speaker.speakerLastContacted">
+          Last contacted - <span class="date">{{speaker.speakerLastContacted | date: 'dd MMMM yyyy'}}</span>
+        </div>
     </div>
 </div>
