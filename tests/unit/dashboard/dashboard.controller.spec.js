@@ -65,6 +65,15 @@ describe('DashboardController', function() {
                     getSpeakers: spy
                 }
             });
+
+            $provide.factory("speakerCommsService", function($q) {
+                var spy = jasmine.createSpy("getLastContacted").and.callFake(function() {
+                    return $q.resolve({});
+                });
+                return {
+                    getLastContacted: spy
+                }
+            });
         });
     });
 
