@@ -11,6 +11,11 @@ module.exports = function (module) {
                 templateUrl: "dashboard/dashboard.html",
                 controller: "DashboardController",
                 controllerAs: "vm"
+            })
+            .when("/talk-details", {
+                templateUrl: "talkDetails/talkDetails.html",
+                controller: "TalkDetailsController",
+                controllerAs: "vm"
             });
     }
 };
