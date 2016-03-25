@@ -1,15 +1,15 @@
 module.exports = function (module) {
     module.controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ['speakerService', 'speakerCommsService', 'StatusList', 'SortPreference'];
-    function DashboardController(speakerService, speakerCommsService, StatusList, SortPreference) {
+    DashboardController.$inject = ['talkOutlinesService', 'speakerCommsService', 'StatusList', 'SortPreference'];
+    function DashboardController(talkOutlinesService, speakerCommsService, StatusList, SortPreference) {
         var vm = this;
-        speakerService.getSpeakers().then(function (data) {
-            vm.speakers = data;
+        talkOutlinesService.getTalkOutlines().then(function (data) {
+            vm.talkOutlines = data;
             speakerCommsService.getLastContacted().then(function (data) {
-              vm.speakers = vm.speakers.map(function(speaker) {
-                 speaker.speakerLastContacted = data[speaker.speakerEmail];
-                 return speaker;
+              vm.talkOutlines = vm.talkOutlines.map(function(talkOutline) {
+                 talkOutline.speakerLastContacted = data[talkOutline.speakerEmail];
+                 return talkOutline;
               });
             });
         });
@@ -17,12 +17,12 @@ module.exports = function (module) {
         vm.excludedStatusesList = new StatusList();
         vm.sortPreference = new SortPreference("speakerRating", true);
 
-        vm.masterFilterFunction = function(speaker) {
-            return statusFilter(speaker);
+        vm.masterFilterFunction = function(talkOutline) {
+            return statusFilter(talkOutline);
         };
-        
-        function statusFilter(speaker) {
-            return !vm.excludedStatusesList.hasStatus(speaker.status);
+
+        function statusFilter(talkOutline) {
+            return !vm.excludedStatusesList.hasStatus(talkOutline.status);
         }
     }
 };

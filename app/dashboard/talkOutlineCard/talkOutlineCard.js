@@ -1,12 +1,12 @@
 module.exports = function (module) {
-    module.directive("speakerCard", speakerCard);
+    module.directive("talkOutlineCard", talkOutlineCard);
 
-	function speakerCard() {
+	function talkOutlineCard() {
     var directive = {
         scope : {
-          speaker: "="
+          talkOutline: "="
         },
-        templateUrl: "dashboard/speakerCard/speakerCard.html",
+        templateUrl: "dashboard/talkOutlineCard/talkOutlineCard.html",
         link: link
     };
     return directive;
@@ -17,7 +17,7 @@ module.exports = function (module) {
         scope.statusToCssClass = function(status) {
             var statusClass = statusClasses[status];
             return statusClass || statusClasses[0];
-        };        
+        };
     }
 	}
 };

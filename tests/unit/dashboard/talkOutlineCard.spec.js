@@ -1,4 +1,4 @@
-describe('speakerCard', function() {
+describe('Talk outline card', function() {
     beforeEach(angular.mock.module('BristechSRM'));
     beforeEach(angular.mock.module('template-module'));
 
@@ -10,7 +10,7 @@ describe('speakerCard', function() {
         $rootScope = _$rootScope_;
     }));
 
-    var speaker = {
+    var talkOutline = {
         "talkId":1,
         "speakerName":"Thomas Hull",
         "title":"To know javascript is to love javascript",
@@ -21,28 +21,28 @@ describe('speakerCard', function() {
         "status":1
     };
 
-    function compileElement(speaker) {
-        $rootScope.speaker = speaker;
-        var html = '<speaker-card speaker="speaker"></speaker-card>';
+    function compileElement(talkOutline) {
+        $rootScope.talkOutline = talkOutline;
+        var html = '<talk-outline-card talk-outline="talkOutline"></talk-outline-card>';
         var element = $compile(html)($rootScope);
         $rootScope.$digest();
         return element;
     }
 
     it("returns unassigned by default", function() {
-        var element = compileElement(speaker);
+        var element = compileElement(talkOutline);
         var isolatedScope = element.isolateScope();
         expect(isolatedScope.statusToCssClass()).toBe("unassigned");
     });
 
     it("returns unassigned if given unrecognised status", function() {
-        var element = compileElement(speaker);
+        var element = compileElement(talkOutline);
         var isolatedScope = element.isolateScope();
         expect(isolatedScope.statusToCssClass(1000)).toBe("unassigned");
     });
 
     it("returns specified status class", function() {
-        var element = compileElement(speaker);
+        var element = compileElement(talkOutline);
         var isolatedScope = element.isolateScope();
         expect(isolatedScope.statusToCssClass(3)).toBe("deferred");
     });
