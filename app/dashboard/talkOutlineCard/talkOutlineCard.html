@@ -14,7 +14,7 @@
         </div>
         <div class="title">{{talkOutline.title}}</div>
     </div>
-    <div class="talk-outline-card-footer {{statusToCssClass(talkOutline.status)}}">
+    <div class="talk-outline-card-footer {{talkOutline.status | talkStatusClass}}">
         <div class="speaker-name">{{talkOutline.speakerName}}</div>
         <div class="last-contacted" ng-if="talkOutline.speakerLastContacted">
           Last contacted - <span class="date">{{talkOutline.speakerLastContacted | date: 'dd MMMM yyyy'}}</span>

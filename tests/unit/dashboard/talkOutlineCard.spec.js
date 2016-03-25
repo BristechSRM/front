@@ -29,21 +29,4 @@ describe('Talk outline card', function() {
         return element;
     }
 
-    it("returns unassigned by default", function() {
-        var element = compileElement(talkOutline);
-        var isolatedScope = element.isolateScope();
-        expect(isolatedScope.statusToCssClass()).toBe("unassigned");
-    });
-
-    it("returns unassigned if given unrecognised status", function() {
-        var element = compileElement(talkOutline);
-        var isolatedScope = element.isolateScope();
-        expect(isolatedScope.statusToCssClass(1000)).toBe("unassigned");
-    });
-
-    it("returns specified status class", function() {
-        var element = compileElement(talkOutline);
-        var isolatedScope = element.isolateScope();
-        expect(isolatedScope.statusToCssClass(3)).toBe("deferred");
-    });
 });
