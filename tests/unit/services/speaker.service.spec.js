@@ -11,7 +11,7 @@ describe('Speaker service', function() {
     beforeEach(inject(function(_speakerService_, _$httpBackend_, _BACKEND_){
         service = _speakerService_;
         $httpBackend = _$httpBackend_;
-        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.port + "/talkoutlines";
+        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.speakersPort + "/talkoutlines";
     }));
 
     describe('getSpeakers makes get request', function(){
