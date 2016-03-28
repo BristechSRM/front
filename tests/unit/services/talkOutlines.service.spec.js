@@ -30,6 +30,24 @@ describe('Talk outline service', function() {
         });
     });
 
+    describe('getTalkOutline', function() {
+        it('performs HTTP GET request on the given url', function() {
+            var talkId = 1;
+            $httpBackend.expectGET(backendFullUrl + "/" + talkId).respond(talkOutlines[0]);
+            service.getTalkOutline(1);
+            $httpBackend.flush();
+        });
+
+        it('returns the talk outline returned from the HTTP request', function() {
+            var talkId = 1;
+            $httpBackend.whenGET(backendFullUrl + "/" + talkId).respond(talkOutlines[0]);
+            service.getTalkOutline(1).then(function(result) {
+                expect(result).toEqual(talkOutlines[0]);
+            });
+            $httpBackend.flush();
+        });
+    });
+
     afterEach(function() {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
