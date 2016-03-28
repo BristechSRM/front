@@ -1,27 +1,17 @@
 module.exports = function (module) {
     module.controller("TalkDetailsController", TalkDetailsController);
 
-    TalkDetailsController.$inject = [];
-    function TalkDetailsController() {
+    TalkDetailsController.$inject = ["talkDetailsService", "$routeParams"];
+    function TalkDetailsController(talkDetailsService, $routeParams) {
         var vm = this;
+        var talkId = $routeParams.talkId;
 
-        vm.speaker = {
-            id: 1,
-            name: "Thomas Hull",
-            email: "thull@email.com",
-            rating: 4
-        };
-        vm.admin= {
-            id: 2,
-            name: "Chris Smith",
-            email: "csmith@email.com",
-            imageUrl: "https://placebear.com/50/50"
-        };
-        vm.talk = {
-            id:1,
-            title: "To Know JavaScript Is To Love JavaScript",
-            status: 5
-        };
+        talkDetailsService.getTalkDetails(talkId).then(function(result) {
+            vm.speaker = result.data.speaker;
+            vm.admin = result.data.admin;
+            vm.talk = result.data.talk;
+        });
+
         vm.correspondences = [
             {
                 date: "2016-02-06T15:16:54Z",

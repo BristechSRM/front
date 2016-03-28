@@ -1,8 +1,8 @@
 module.exports = function (module) {
     module.controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ['talkOutlinesService', 'speakerCommsService', 'StatusList', 'SortPreference'];
-    function DashboardController(talkOutlinesService, speakerCommsService, StatusList, SortPreference) {
+    DashboardController.$inject = ['talkOutlinesService', 'speakerCommsService', 'StatusList', 'SortPreference', '$location'];
+    function DashboardController(talkOutlinesService, speakerCommsService, StatusList, SortPreference, $location) {
         var vm = this;
         talkOutlinesService.getTalkOutlines().then(function (data) {
             vm.talkOutlines = data;
@@ -19,6 +19,10 @@ module.exports = function (module) {
 
         vm.masterFilterFunction = function(talkOutline) {
             return statusFilter(talkOutline);
+        };
+
+        vm.goToTalkDetails = function(talkId) {
+            $location.path("/talk-details/" + talkId);
         };
 
         function statusFilter(talkOutline) {

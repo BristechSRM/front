@@ -12,7 +12,7 @@ module.exports = function (module) {
                 controller: "DashboardController",
                 controllerAs: "vm"
             })
-            .when("/talk-details", {
+            .when("/talk-details/:talkId", {
                 templateUrl: "talkDetails/talkDetails.html",
                 controller: "TalkDetailsController",
                 controllerAs: "vm"

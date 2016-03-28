@@ -1,6 +1,6 @@
 <div id="dashboard">
     <div class="talk-outline-cards">
-        <talk-outline-card ng-repeat="talkOutline in vm.talkOutlines | filter: vm.masterFilterFunction | orderBy: vm.sortPreference.key : vm.sortPreference.isDesc " talk-outline="talkOutline">
+        <talk-outline-card ng-repeat="talkOutline in vm.talkOutlines | filter: vm.masterFilterFunction | orderBy: vm.sortPreference.key : vm.sortPreference.isDesc " talk-outline="talkOutline" ng-click="vm.goToTalkDetails(talkOutline.talkId)">
         </talk-outline-card>
     </div>
     <sidebar excluded-statuses-list="vm.excludedStatusesList" sort-preference="vm.sortPreference">
