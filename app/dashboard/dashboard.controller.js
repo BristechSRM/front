@@ -8,7 +8,7 @@ module.exports = function (module) {
             vm.speakers = data;
             speakerCommsService.getLastContacted().then(function (data) {
               vm.speakers = vm.speakers.map(function(speaker) {
-                 speaker.speakerLastContacted = data[speaker.speakerEmail];
+                 speaker.speakerLastContacted = data[speaker.speakerEmail] || null;
                  return speaker;
               });
             });
@@ -20,7 +20,7 @@ module.exports = function (module) {
         vm.masterFilterFunction = function(speaker) {
             return statusFilter(speaker);
         };
-        
+
         function statusFilter(speaker) {
             return !vm.excludedStatusesList.hasStatus(speaker.status);
         }
