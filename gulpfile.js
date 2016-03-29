@@ -47,11 +47,11 @@ gulp.task('style:sass', function() {
 
 gulp.task('style',['style:sass']);
 
-gulp.task('test:karma', function() {
+gulp.task('test:karma', function(done) {
     new plugins.karma.Server({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true
-    }).start();
+    }, done).start();
 });
 
 gulp.task('test', ['test:karma']);
@@ -59,7 +59,6 @@ gulp.task('test', ['test:karma']);
 gulp.task('build', function(callback) {
     plugins.runSequence("clean", ["lint", "test"], "webpack", ["copy:views", "style"], callback);
 });
-
 
 gulp.task('watch', ['webpack:devServer'], function() {
   gulp.watch([paths.style.sass, paths.style.css], ['style']);
