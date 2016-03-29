@@ -5,11 +5,12 @@ module.exports = function (module) {
     function DashboardController(talkOutlinesService, speakerCommsService, StatusList, SortPreference, $location) {
         var vm = this;
         talkOutlinesService.getTalkOutlines().then(function (data) {
+            //Early display
             vm.talkOutlines = data;
+
             speakerCommsService.getLastContacted().then(function (data) {
-              vm.talkOutlines = vm.talkOutlines.map(function(talkOutline) {
+              vm.talkOutlines.forEach(function(talkOutline) {
                  talkOutline.speakerLastContacted = data[talkOutline.speakerEmail] || null;
-                 return talkOutline;
               });
             });
         });
