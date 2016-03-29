@@ -7,7 +7,7 @@ module.exports = function(module) {
             getSpeakers : getSpeakers
         };
 
-        var apiBaseUrl = BACKEND.url + ':' + BACKEND.port;
+        var apiBaseUrl = BACKEND.url + ':' + BACKEND.speakersPort;
         var speakersUrl = apiBaseUrl + '/talkoutlines';
         var speakers = [];
 
