@@ -8,7 +8,7 @@ module.exports = function(module) {
         };
 
         var apiBaseUrl = BACKEND.url + ':' + BACKEND.speakerCommsPort;
-        var lastContactedUrl = apiBaseUrl + "/last-contacted";
+        var lastContactedUrl = apiBaseUrl + "/lastcontacted";
 
         function getLastContacted() {
             return $http.get(lastContactedUrl).then(function(result) {
