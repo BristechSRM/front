@@ -13,7 +13,7 @@ describe('Speaker comms service', function() {
     beforeEach(inject(function(_speakerCommsService_, _$httpBackend_, _BACKEND_){
         service = _speakerCommsService_;
         $httpBackend = _$httpBackend_;
-        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.speakerCommsPort + "/last-contacted";
+        backendFullUrl = _BACKEND_.url + ":" + _BACKEND_.speakerCommsPort + "/lastcontacted";
     }));
 
     describe('getLastContacted', function(){
