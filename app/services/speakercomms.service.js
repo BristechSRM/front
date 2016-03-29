@@ -1,15 +1,17 @@
 module.exports = function(module) {
     module.factory("speakerCommsService", speakerCommsService);
 
-    speakerCommsService.$inject = ["$q","$http"];
-    function speakerCommsService($q, $http) {
+    speakerCommsService.$inject = ["$http", "BACKEND"];
+    function speakerCommsService($http, BACKEND) {
         var service = {
             getLastContacted : getLastContacted
         };
 
+        var apiBaseUrl = BACKEND.url + ':' + BACKEND.speakerCommsPort;
+        var lastContactedUrl = apiBaseUrl + "/last-contacted";
+
         function getLastContacted() {
-            var url = 'http://api.bris.tech:8080/last-contacted';
-            return $http.get(url).then(function(result) {
+            return $http.get(lastContactedUrl).then(function(result) {
                 return result.data;
             });
         }

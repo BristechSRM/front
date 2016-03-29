@@ -6,54 +6,61 @@ describe('DashboardController', function() {
         {
             "talkId":1,
             "speakerName":"Thomas Hull",
-            "title":"To know javascript is to love javascript",
+            "speakerEmail": "test1@email.com",
+            "title":"To know JavaScript is to love JavaScript",
             "speakerRating":5,
             "adminName":"David Wybourn",
             "adminImageUrl":"https://placebear.com/50/50",
-            "speakerLastContacted":"1970-01-01",
             "status":1
         },
         {
             "talkId":2,
             "speakerName":"Jason Ebbin",
+            "speakerEmail": "test2@email.com",
             "title":"How dull is F#",
             "speakerRating":3,
             "adminName":"Jason Ebbin",
             "adminImageUrl":"https://placebear.com/50/50",
-            "speakerLastContacted":"1989-11-09",
             "status":3
         },
         {
             "talkId":3,
             "speakerName":"David Wybourn",
+            "speakerEmail": "test3@email.com",
             "title":"Concourse: Where I met myself",
             "speakerRating":5,
             "adminName":"Chris James Smith",
             "adminImageUrl":"https://placebear.com/50/50",
-            "speakerLastContacted":"2015-10-21",
             "status":4
         },
         {
             "talkId":4,
             "speakerName":"Joe Bloggs",
+            "speakerEmail": "test4@email.com",
             "title":"",
             "speakerRating":0,
             "adminName":"Thomas Hull",
             "adminImageUrl":"https://placebear.com/50/50",
-            "speakerLastContacted":"2016-02-19",
             "status":2
         },
         {
             "talkId":5,
             "speakerName":"Chris Smith",
+            "speakerEmail": "test5@email.com",
             "title":"C# or F#: Which is sharper?",
             "speakerRating":4,
             "adminName":"Thomas Hull",
             "adminImageUrl":"https://placebear.com/50/50",
-            "speakerLastContacted":"2016-01-10",
             "status":5
         }
     ];
+
+    var lastContacted = {
+        "test1@email.com": "2015-12-25",
+        "test2@email.com": "1989-11-09",
+        "test5@email.com": "2016-01-10",
+        "test3@email.com": "2016-02-19"
+    };
 
     beforeEach(function() {
         angular.mock.module('BristechSRM', function($provide) {
@@ -68,7 +75,7 @@ describe('DashboardController', function() {
 
             $provide.factory("speakerCommsService", function($q) {
                 var spy = jasmine.createSpy("getLastContacted").and.callFake(function() {
-                    return $q.resolve({});
+                    return $q.resolve(lastContacted);
                 });
                 return {
                     getLastContacted: spy
@@ -95,6 +102,19 @@ describe('DashboardController', function() {
     it("sets talk outlines on instantiation", function() {
         var controller = createController({});
         expect(controller.talkOutlines).not.toBe(null);
+    });
+
+    it("maps last contacted emails to talk outlines on instantiation", function() {
+        var controller = createController({});
+        expect(controller.talkOutlines[0].speakerLastContacted).toBe("2015-12-25");
+        expect(controller.talkOutlines[1].speakerLastContacted).toBe("1989-11-09");
+        expect(controller.talkOutlines[2].speakerLastContacted).toBe("2016-02-19");
+        expect(controller.talkOutlines[4].speakerLastContacted).toBe("2016-01-10");
+    });
+
+    it("sets last contacted field if never contacted to null", function() {
+        var controller = createController({});
+        expect(controller.talkOutlines[3].speakerLastContacted).toBe(null);
     });
 
     it("includes all talk outlines by default", function() {

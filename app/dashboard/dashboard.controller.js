@@ -8,7 +8,7 @@ module.exports = function (module) {
             vm.talkOutlines = data;
             speakerCommsService.getLastContacted().then(function (data) {
               vm.talkOutlines = vm.talkOutlines.map(function(talkOutline) {
-                 talkOutline.speakerLastContacted = data[talkOutline.speakerEmail];
+                 talkOutline.speakerLastContacted = data[talkOutline.speakerEmail] || null;
                  return talkOutline;
               });
             });
@@ -17,16 +17,16 @@ module.exports = function (module) {
         vm.excludedStatusesList = new StatusList();
         vm.sortPreference = new SortPreference("speakerRating", true);
 
-        vm.masterFilterFunction = function(talkOutline) {
-            return statusFilter(talkOutline);
+        vm.masterFilterFunction = function(speaker) {
+            return statusFilter(speaker);
         };
 
         vm.goToTalkDetails = function(talkId) {
             $location.path("/talk-details/" + talkId);
         };
 
-        function statusFilter(talkOutline) {
-            return !vm.excludedStatusesList.hasStatus(talkOutline.status);
+        function statusFilter(speaker) {
+            return !vm.excludedStatusesList.hasStatus(speaker.status);
         }
     }
 };
