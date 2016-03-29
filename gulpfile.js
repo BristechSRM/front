@@ -57,7 +57,11 @@ gulp.task('test:karma', function() {
 gulp.task('test', ['test:karma']);
 
 gulp.task('build', function(callback) {
-    plugins.runSequence("clean", ["lint", "test"], "webpack", ["copy:views", "style"], callback);
+    plugins.runSequence("clean", ["lint", "test"], "webpack", ["copy:views", "style"], "finish", callback);
+});
+
+gulp.task('finish', function(callback) {
+    console.log("DONE!");
 });
 
 
