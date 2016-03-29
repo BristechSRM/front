@@ -86,12 +86,16 @@ describe('DashboardController', function() {
 
     var $controller;
     var $rootScope;
+    var $q;
     var mockTalkOutlinesService;
+    var mockSpeakerCommsService;
 
-    beforeEach(inject(function(_$controller_, _$rootScope_, _talkOutlinesService_) {
+    beforeEach(inject(function(_$controller_, _$rootScope_, _$q_, _talkOutlinesService_, _speakerCommsService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
+        $q = _$q_;
         mockTalkOutlinesService = _talkOutlinesService_;
+        mockSpeakerCommsService = _speakerCommsService_;
     }));
 
     it("gets talk outlines on instantiation", function() {
@@ -102,6 +106,24 @@ describe('DashboardController', function() {
     it("sets talk outlines on instantiation", function() {
         var controller = createController({});
         expect(controller.talkOutlines).not.toBe(null);
+    });
+
+    it("gets last contacted date after talk outlines return", function() {
+        mockSpeakerCommsService.getLastContacted.and.callFake(function() {
+            expect(mockTalkOutlinesService.getTalkOutlines).toHaveBeenCalled();
+            return $q.resolve(lastContacted);
+        });
+        var controller = createController({});
+        expect(mockSpeakerCommsService.getLastContacted).toHaveBeenCalled();
+    });
+
+    it("does not get last contacted until talk outlines return", function() {
+        mockTalkOutlinesService.getTalkOutlines.and.callFake(function() {
+            expect(mockSpeakerCommsService.getLastContacted).not.toHaveBeenCalled();
+            return $q.resolve(talkOutlines);
+        });
+        var controller = createController({});
+        expect(mockTalkOutlinesService.getTalkOutlines).toHaveBeenCalled();
     });
 
     it("maps last contacted emails to talk outlines on instantiation", function() {
