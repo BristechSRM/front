@@ -1,15 +1,16 @@
 module.exports = function (module) {
     module.controller("DashboardController", DashboardController);
 
-    DashboardController.$inject = ['speakerService', 'speakerCommsService', 'StatusList', 'SortPreference'];
-    function DashboardController(speakerService, speakerCommsService, StatusList, SortPreference) {
+    DashboardController.$inject = ['talkOutlinesService', 'speakerCommsService', 'StatusList', 'SortPreference', '$location'];
+    function DashboardController(talkOutlinesService, speakerCommsService, StatusList, SortPreference, $location) {
         var vm = this;
-        speakerService.getSpeakers().then(function (data) {
-            vm.speakers = data;
+        talkOutlinesService.getTalkOutlines().then(function (data) {
+            //Early display
+            vm.talkOutlines = data;
+
             speakerCommsService.getLastContacted().then(function (data) {
-              vm.speakers = vm.speakers.map(function(speaker) {
-                 speaker.speakerLastContacted = data[speaker.speakerEmail] || null;
-                 return speaker;
+              vm.talkOutlines.forEach(function(talkOutline) {
+                 talkOutline.speakerLastContacted = data[talkOutline.speakerEmail] || null;
               });
             });
         });
@@ -19,6 +20,10 @@ module.exports = function (module) {
 
         vm.masterFilterFunction = function(speaker) {
             return statusFilter(speaker);
+        };
+
+        vm.goToTalkDetails = function(talkId) {
+            $location.path("/talk-details/" + talkId);
         };
 
         function statusFilter(speaker) {

@@ -2,7 +2,7 @@ describe('DashboardController', function() {
     beforeEach(angular.mock.module('BristechSRM'));
     beforeEach(angular.mock.module('template-module'));
 
-    var speakers = [
+    var talkOutlines = [
         {
             "talkId":1,
             "speakerName":"Thomas Hull",
@@ -64,12 +64,12 @@ describe('DashboardController', function() {
 
     beforeEach(function() {
         angular.mock.module('BristechSRM', function($provide) {
-            $provide.factory("speakerService", function($q) {
-                var spy = jasmine.createSpy("getSpeakers").and.callFake(function() {
-                    return $q.resolve(speakers);
+            $provide.factory("talkOutlinesService", function($q) {
+                var spy = jasmine.createSpy("getTalkOutlines").and.callFake(function() {
+                    return $q.resolve(talkOutlines);
                 });
                 return {
-                    getSpeakers: spy
+                    getTalkOutlines: spy
                 }
             });
 
@@ -86,62 +86,62 @@ describe('DashboardController', function() {
 
     var $controller;
     var $rootScope;
-    var mockSpeakerService;
+    var mockTalkOutlinesService;
 
-    beforeEach(inject(function(_$controller_, _$rootScope_, _speakerService_) {
+    beforeEach(inject(function(_$controller_, _$rootScope_, _talkOutlinesService_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
-        mockSpeakerService = _speakerService_;
+        mockTalkOutlinesService = _talkOutlinesService_;
     }));
 
-    it("gets speakers on instantiation", function() {
+    it("gets talk outlines on instantiation", function() {
         var controller = createController({});
-        expect(mockSpeakerService.getSpeakers).toHaveBeenCalled();
+        expect(mockTalkOutlinesService.getTalkOutlines).toHaveBeenCalled();
     });
 
-    it("sets speakers on instantiation", function() {
+    it("sets talk outlines on instantiation", function() {
         var controller = createController({});
-        expect(controller.speakers).not.toBe(null);
+        expect(controller.talkOutlines).not.toBe(null);
     });
 
-    it("maps last contacted emails to speakers on instantiation", function() {
+    it("maps last contacted emails to talk outlines on instantiation", function() {
         var controller = createController({});
-        expect(controller.speakers[0].speakerLastContacted).toBe("2015-12-25");
-        expect(controller.speakers[1].speakerLastContacted).toBe("1989-11-09");
-        expect(controller.speakers[2].speakerLastContacted).toBe("2016-02-19");
-        expect(controller.speakers[4].speakerLastContacted).toBe("2016-01-10");
+        expect(controller.talkOutlines[0].speakerLastContacted).toBe("2015-12-25");
+        expect(controller.talkOutlines[1].speakerLastContacted).toBe("1989-11-09");
+        expect(controller.talkOutlines[2].speakerLastContacted).toBe("2016-02-19");
+        expect(controller.talkOutlines[4].speakerLastContacted).toBe("2016-01-10");
     });
 
     it("sets last contacted field if never contacted to null", function() {
         var controller = createController({});
-        expect(controller.speakers[3].speakerLastContacted).toBe(null);
+        expect(controller.talkOutlines[3].speakerLastContacted).toBe(null);
     });
 
-    it("all speakers included by default", function() {
+    it("includes all talk outlines by default", function() {
         var controller = createController({});
         expect(controller.excludedStatusesList.statuses.length).toEqual(0);
     });
 
-    it("speakers sorted by rating in descending order by default", function() {
+    it("sorts talk outlines by rating in descending order by default", function() {
         var controller = createController({});
         expect(controller.sortPreference.key).toBe("speakerRating");
         expect(controller.sortPreference.isDesc).toBe(true);
     });
 
-    it("speakers with excluded status filtered out", function() {
+    it("filters out talk outlines with an excluded status", function() {
         var controller = createController({});
         controller.excludedStatusesList.addStatus(1);
         controller.excludedStatusesList.addStatus(3);
         controller.excludedStatusesList.addStatus(2);
-        expect(controller.masterFilterFunction(speakers[0])).toBe(false);
+        expect(controller.masterFilterFunction(talkOutlines[0])).toBe(false);
     });
 
-    it("speakers with included status not filtered out", function() {
+    it("does not filter out talk outlines with an included status", function() {
         var controller = createController({});
         controller.excludedStatusesList.addStatus(1);
         controller.excludedStatusesList.addStatus(3);
         controller.excludedStatusesList.addStatus(2);
-        expect(controller.masterFilterFunction(speakers[2])).toBe(true);
+        expect(controller.masterFilterFunction(talkOutlines[2])).toBe(true);
     });
 
     function createController(scope) {

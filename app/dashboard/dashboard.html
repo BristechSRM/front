@@ -1,7 +1,7 @@
 <div id="dashboard">
-    <div class="speaker-cards">
-        <speaker-card ng-repeat="speaker in vm.speakers | filter: vm.masterFilterFunction | orderBy: vm.sortPreference.key : vm.sortPreference.isDesc " speaker="speaker">
-        </speaker-card>
+    <div class="talk-outline-cards">
+        <talk-outline-card ng-repeat="talkOutline in vm.talkOutlines | filter: vm.masterFilterFunction | orderBy: vm.sortPreference.key : vm.sortPreference.isDesc " talk-outline="talkOutline" ng-click="vm.goToTalkDetails(talkOutline.talkId)">
+        </talk-outline-card>
     </div>
     <sidebar excluded-statuses-list="vm.excludedStatusesList" sort-preference="vm.sortPreference">
     </sidebar>

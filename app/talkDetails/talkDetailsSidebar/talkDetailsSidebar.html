@@ -1,0 +1,46 @@
+<div class="sidebar">
+    <div class="header">
+        <h1 class="{{talk.status | talkStatusClass }}">{{speaker.name}}</h1>
+        {{talk.title}}
+    </div>
+
+    <div class="section">
+        <h1>Status</h1>
+        <table>
+            <tr>
+                <td>Assigned Admin</td>
+                <td>{{admin.name}}</td>
+            </tr>
+            <tr>
+                <td>Credibility</td>
+                <td><span class="rating"><span class="orange-star">{{speaker.rating | stars}}</span><span class="gray-star">{{5 - speaker.rating | stars}}</span></span></td>
+            </tr>
+            <tr>
+                <td>Signup Method</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Date Added</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Last Contacted</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h1>Contact Details</h1>
+        <table>
+            <tr>
+                <td>Email</td>
+                <td>{{speaker.email}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
