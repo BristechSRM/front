@@ -9,7 +9,7 @@ module.exports = function (module) {
                 talk: "=",
                 admin: "="
             },
-            templateUrl: "talkDetails/talkDetailsSidebar/talkDetailsSidebar.html"
+            templateUrl: "talkDetails/talkDetailsSidebar/talk-details-sidebar.html"
         };
         return directive;
     }

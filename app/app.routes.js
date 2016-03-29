@@ -13,7 +13,7 @@ module.exports = function (module) {
                 controllerAs: "vm"
             })
             .when("/talk-details/:talkId", {
-                templateUrl: "talkDetails/talkDetails.html",
+                templateUrl: "talkDetails/talk-details.html",
                 controller: "TalkDetailsController",
                 controllerAs: "vm"
             });

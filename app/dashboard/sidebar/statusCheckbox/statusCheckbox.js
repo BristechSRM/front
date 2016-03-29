@@ -8,7 +8,7 @@ module.exports = function (module) {
                 label: "@",
                 checked: "="
             },
-            templateUrl: "dashboard/sidebar/statusCheckbox/statusCheckbox.html"
+            templateUrl: "dashboard/sidebar/statusCheckbox/status-checkbox.html"
         };
         return directive;
     }

@@ -7,7 +7,7 @@ module.exports = function (module) {
             scope: {
                 correspondence: "="
             },
-            templateUrl: "talkDetails/correspondenceCard/correspondenceCard.html"
+            templateUrl: "talkDetails/correspondenceCard/correspondence-card.html"
         };
         return directive;
     }
