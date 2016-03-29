@@ -6,7 +6,7 @@ module.exports = function (module) {
             scope : {
               talkOutline: "="
             },
-            templateUrl: "dashboard/talkOutlineCard/talkOutlineCard.html"
+            templateUrl: "dashboard/talkOutlineCard/talk-outline-card.html"
         };
         return directive;
 	}
